@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"; // Importa el archivo CSS de Bootstrap
 
 const ItemList = () => {
@@ -16,23 +17,26 @@ const ItemList = () => {
     }, []);
 
     return (
-<div>
-            <h1>Lista de Productos</h1>
+        <div className='mx-2'>
+            <h3 className='user-select-none'>Lista de Productos</h3>
             {items.length === 0 ? (
-                <p>No hay productos disponibles.</p>
+                <p className='user-select-none'>No hay productos disponibles.</p>
             ) : (
-                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
                     {items.map((item) => (
-                        <div key={item.id} className="col">
-                            <div className="card h-100">
+                        <div >
+                            <Link to={`/producto/${item.id}`} className="card card-sm p-1">
                                 <img src={item.image[0]} className="card-img-top" alt={item.nombre} />
-                                <div className="card-body">
-                                    <h5 className="card-title">{item.nombre}</h5>
-                                    <p className="card-text">Precio: ${item.precio}</p>
+                                <div className="card-body ">
+                                    <h5 className="card-title ">{item.nombre}</h5>
+                                    <h4 className="card-text">Precio: ${item.precio}</h4>
                                     <p className="card-text">{item.descripcion}</p>
-                                    <a href="#" className="btn btn-primary">Agregar al carrito</a>
+                                    <div className='row'>
+                                        <a href="#" className="btn btn-dark p-1 mb-1">Ver </a>
+                                        <a href="#" className="btn btn-dark p-1 mt-1">Agregar al carrito</a>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     ))}
                 </div>

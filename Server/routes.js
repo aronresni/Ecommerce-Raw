@@ -15,7 +15,7 @@ const productos = [
         categoria: "Suplementos",
     },
     {
-        id: 1,
+        id: 2,
         image: [
             "https://getrawnutrition.com/cdn/shop/files/RAW-3_720x.jpg?v=1684901900",
         ],
@@ -26,7 +26,7 @@ const productos = [
         categoria: "Suplementos",
     },
     {
-        id: 1,
+        id: 3,
         image: [
             "https://getrawnutrition.com/cdn/shop/files/RAW-3_720x.jpg?v=1684901900",
         ],
@@ -37,7 +37,7 @@ const productos = [
         categoria: "Suplementos",
     },
     {
-        id: 1,
+        id: 4,
         image: [
             "https://getrawnutrition.com/cdn/shop/files/RAW-3_720x.jpg?v=1684901900",
         ],
@@ -48,7 +48,7 @@ const productos = [
         categoria: "Suplementos",
     },
     {
-        id: 1,
+        id: 5,
         image: [
             "https://getrawnutrition.com/cdn/shop/files/6_0231e27f-de59-4bbb-9a71-f53bd72f6d81_720x.png?v=1688147354",
             "https://getrawnutrition.com/cdn/shop/files/7_a9c795a5-316a-4ee3-af5f-54bacfb2644d_720x.png?v=1688147354",
@@ -57,7 +57,7 @@ const productos = [
         precio: 54.99,
         imageinfo: "https://cdn.shopify.com/s/files/1/0303/1135/0365/files/VANILLA_OATMEAL_COOKIE_480x480.jpg?v=1688397970",
         tamaño: "1.5 Kg",
-        categoria: "Suplementos",
+        categoria: "Clothes",
     },
 
 

@@ -6,9 +6,9 @@ const NavBar = () => {
         <>
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
-                   
-                    <a className="navbar-brand" href="/home">
-                        <img src="https://getrawnutrition.com/cdn/shop/files/RAW-Logos-01_200x.png?v=1660529628" className="w-200" alt="Logo" />
+
+                    <a className="navbar-brand " href="/home">
+                        <img src="https://getrawnutrition.com/cdn/shop/files/RAW-Logos-01_200x.png?v=1660529628" alt="Logo" />
                     </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -18,18 +18,8 @@ const NavBar = () => {
                             <li className="nav-item">
                                 <a className="nav-link fs-4 fw-semibold" href="/shopsuplementos">Supplements</a>
                             </li>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle fs-4 fw-semibold" href="/shopclothes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Apparel
-                                </a>
-                                <div className="dropdown-menu " aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="#">All Apparel</a>
-                                    <a className="dropdown-item" href="#">T-shirt</a>
-                                    <a className="dropdown-item" href="#">Gap</a>
-                                    <a className="dropdown-item" href="#">Accesories</a>
-                                    <a className="dropdown-item" href="#">Shorts</a>
-                                    <a className="dropdown-item" href="#">Socks</a>
-                                </div>
+                            <li className="nav-item ">
+                            <a className="nav-link fs-4 fw-semibold" href="/shopclothes">Apparel</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link fs-4 fw-semibold" href="#">About Us</a>
@@ -42,7 +32,7 @@ const NavBar = () => {
                     </div>
                 </div>
             </nav>
-           
+
         </>
     );
 };

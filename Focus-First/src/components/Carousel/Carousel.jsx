@@ -1,5 +1,4 @@
 import React from 'react';
-import style from "./carousel.modules.css"
 const Carousel = () => {
   return (
     <div id="carouselExampleDark" className="carousel carousel-dark slide">
