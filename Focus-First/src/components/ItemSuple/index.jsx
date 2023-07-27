@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"; // Importa el archivo CSS de Bootstrap
 
-const ItemList = () => {
+const ItemSuple = () => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -15,16 +15,18 @@ const ItemList = () => {
                 console.error(error);
             });
     }, []);
-    const clothesItems = items.filter((item) => item.categoria === "Clothes")
+
+    const suplementosItems = items.filter((item) => item.categoria === "Suplementos");
+
     return (
         <div className='mx-2'>
             <h3 className='user-select-none'>Lista de Productos</h3>
-            {clothesItems.length === 0 ? (
+            {suplementosItems.length === 0 ? (
                 <p className='user-select-none'>No hay productos disponibles.</p>
             ) : (
                 <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
-                    {clothesItems.map((item) => (
-                        <div >
+                    {suplementosItems.map((item) => (
+                        <div key={item.id}>
                             <Link to={`/producto/${item.id}`} className="card card-sm p-1">
                                 <img src={item.image[0]} className="card-img-top" alt={item.nombre} />
                                 <div className="card-body ">
@@ -45,4 +47,4 @@ const ItemList = () => {
     );
 };
 
-export default ItemList;
+export default ItemSuple;
