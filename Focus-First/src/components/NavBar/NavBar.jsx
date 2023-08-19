@@ -7,7 +7,7 @@ const NavBar = () => {
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
 
-                    <a className="navbar-brand " href="/home">
+                    <a className="navbar-brand " href="/">
                         <img src="https://getrawnutrition.com/cdn/shop/files/RAW-Logos-01_200x.png?v=1660529628" alt="Logo" />
                     </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
