@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"; // Importa el archivo CSS de Bootstrap
 import Spinner from '../Spinner';
+import { getProducts } from '../../products/products.request'; // Asegúrate de importar la función getProducts
 
 const ItemList = () => {
-    const [items, setItems] = useState([]);
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
+        async function fetchProducts() {
+            try {
+                const categoria = 'Clothes'; 
+                const fetchedProducts = await getProducts(categoria);
+                setProducts(fetchedProducts);
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+                setLoading(false);
+            }
+        }
+
+        // Simulando una demora en la carga
         setTimeout(() => {
-            axios.get("http://localhost:3000/productos")
-                .then((response) => {
-                    setItems(response.data);
-                    setLoading(false);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+            fetchProducts();
         }, 2000);
     }, []);
 
+    const clothesItems = products.filter((item) => item.categoria === "Clothes");
 
-
-    const clothesItems = items.filter((item) => item.categoria === "Clothes")
     return (
         <div className='mx-2'>
             {loading ? (
@@ -37,13 +43,13 @@ const ItemList = () => {
                             {clothesItems.map((item) => (
                                 <div key={item.id}>
                                     <Link to={`/producto/${item.id}`} className="card card-sm p-1">
-                                        <img src={item.image[0]} className="card-img-top" alt={item.nombre} />
-                                        <div className="card-body ">
-                                            <h5 className="card-title ">{item.nombre}</h5>
+                                        <img src={item.image} className="card-img-top" alt={item.nombre} />
+                                        <div className="card-body">
+                                            <h5 className="card-title">{item.nombre}</h5>
                                             <h4 className="card-text">Precio: ${item.precio}</h4>
                                             <p className="card-text">{item.descripcion}</p>
                                             <div className='row'>
-                                                <a href="#" className="btn btn-dark p-1 mb-1">Ver </a>
+                                                <a href="#" className="btn btn-dark p-1 mb-1">Ver</a>
                                                 <a href="#" className="btn btn-dark p-1 mt-1">Agregar al carrito</a>
                                             </div>
                                         </div>

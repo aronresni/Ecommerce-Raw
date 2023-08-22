@@ -5,19 +5,23 @@ import ShopClothes from "../Pages/ShopClothes";
 import DetailProduct from "../Pages/DetailProduct";
 import Contact from "../Pages/Contact";
 import About from "../Pages/About";
+import Cart from "../Pages/Cart";
+import CartConntextProvider from "../state/cart.context"
 
 const Routers = () => {
 
     return (
-        <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/shopsuplementos" element={<ShopSuplementos />} />
-            <Route path="/shopclothes" element={<ShopClothes />} />
-            <Route path= "/producto/:id" element={<DetailProduct />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/aboutus" element={<About />}
-            />
-        </Routes>
+        <CartConntextProvider>
+            <Routes>
+                <Route path="/" element={<Landing />} />
+                <Route path="/shopsuplementos" element={<ShopSuplementos />} />
+                <Route path="/shopclothes" element={<ShopClothes />} />
+                <Route path="/producto/:id" element={<DetailProduct />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/aboutus" element={<About />} />
+                <Route path="/cart" element={<Cart />} />
+            </Routes>
+        </CartConntextProvider>
     );
 };
 
