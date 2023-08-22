@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css"; // Importa el archivo CSS de Bootstrap
+import "bootstrap/dist/css/bootstrap.min.css"; 
 import Spinner from '../Spinner';
-import { getProducts } from '../../products/products.request'; // Asegúrate de importar la función getProducts
+import { getProducts } from '../../products/products.request'; 
+import { CartContext } from '../../state/cart.context';
 
 const ItemList = () => {
+
+    const { cartList, addToCart } = useContext(CartContext);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchProducts() {
             try {
-                const categoria = 'Clothes'; 
+                const categoria = 'Clothes';
                 const fetchedProducts = await getProducts(categoria);
                 setProducts(fetchedProducts);
                 setLoading(false);
@@ -21,7 +24,6 @@ const ItemList = () => {
             }
         }
 
-        // Simulando una demora en la carga
         setTimeout(() => {
             fetchProducts();
         }, 2000);
@@ -50,7 +52,7 @@ const ItemList = () => {
                                             <p className="card-text">{item.descripcion}</p>
                                             <div className='row'>
                                                 <a href="#" className="btn btn-dark p-1 mb-1">Ver</a>
-                                                <a href="#" className="btn btn-dark p-1 mt-1">Agregar al carrito</a>
+                                                <a href="#" onClick={() => addToCart(item, 1)} className="btn btn-dark p-1 mt-1">Agregar al carrito</a>
                                             </div>
                                         </div>
                                     </Link>

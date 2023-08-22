@@ -1,4 +1,4 @@
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, getDoc, doc } from "firebase/firestore";
 import { db } from "./config";
 
 const productRef = collection(db, "products");
@@ -25,9 +25,18 @@ export const searchProduct = async () => {
     })
 }
 
-export const getMovie = async (id) => {
-    const document = doc(db, "products", id);
-    const docSnap = await getDoc(document);
-    if (docSnap.exists()) return { id: docSnap.id, ...docSnap.data() };
-    return null;
-}
+export const getProductById = async (productId) => {
+    const docRef = doc(productRef, productId);
+
+    try {
+        const docSnapshot = await getDoc(docRef);
+        if (docSnapshot.exists()) {
+            const productData = docSnapshot.data();
+            return { ...productData, id: docSnapshot.id };
+        } else {
+            throw new Error("Producto no encontrado");
+        }
+    } catch (error) {
+        throw new Error("Error al obtener el producto por ID: " + error.message);
+    }
+};

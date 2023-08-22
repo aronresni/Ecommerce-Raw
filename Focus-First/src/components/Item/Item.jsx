@@ -1,58 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import ProductCarousel from "./ProductCarousel"
+import { getProductById } from "../../products/products.request"
+import { CartContext } from "../../state/cart.context"
+import Spinner from '../Spinner';
+
 
 const Item = () => {
-    const [item, setItem] = useState({});
-    const { id } = useParams()
+    const { id } = useParams();
+    const { addToCart } = useContext(CartContext);
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [selectedSize, setSelectedSize] = useState('')
 
     useEffect(() => {
+        async function fetchProduct() {
+            try {
+                const fetchedProduct = await getProductById(id);
+                setProduct(fetchedProduct);
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+                setLoading(false);
+            }
+        }
 
-        axios.get(`http://localhost:3000/productos/${id}`)
-            .then((response) => {
-                setItem(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        setTimeout(() => {
+            fetchProduct();
+        }, 2000);
     }, [id]);
 
     return (
-        <div>
-            {item.id ? (
-                <>
+        <div className='mx-2'>
+            {loading ? (
+                <Spinner />
+            ) : product ? (
+                <div>
+                    <h3 className='user-select-none'>{product.nombre}</h3>
+                    <div className="card card-sm p-1">
+                        <img src={product.image} className="card-img-top" alt={product.nombre} />
+                        <div className="card-body">
+                            <h5 className="card-title">{product.nombre}</h5>
+                            <h4 className="card-text">Precio: ${product.precio}</h4>
+                            <p className="card-text">{product.benefits}</p>
 
-
-                    <div className='d-xs-row d-sm-row d-md-flex'>
-                        <ProductCarousel images={item.image} />
-                        <div className='flex-sm-row'>
-                            <h2>{item.nombre}</h2>
-                            <p>Precio: ${item.precio}</p>
-                            <p>Tamaño: {item.tamaño}</p>
-                            <p>Categoría: {item.categoria}</p>
+                            <img src={product.imagewallpaper} alt="Imagen Wallpaper" />
                             <div className='row'>
-                                <button className='btn-dark m-1'>Buy Now</button>
-                                <button className='btn-dark m-1'>Add to Cart</button>
+                                <a
+                                    href="#"
+                                    onClick={() => addToCart({ ...product, selectedSize }, 1)}
+                                    className="btn btn-dark p-1 mt-1"
+                                >
+                                    Agregar al carrito
+                                </a>
                             </div>
-                            {item.categoria === "Suplementos" ? (
-                                <div>
-                                    <button className='btn btn-dark btn-sm dropdown-toggle' id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        SUPPLEMENT FACTS
-                                    </button>
-                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <img src={item.imageinfo} alt="Supplement Facts" />
-                                    </ul>
-                                </div>
-                            ) : null}
-
+                            <div className='row'>
+                                <label htmlFor="sizeSelector">Talla:</label>
+                                <select
+                                    id="sizeSelector"
+                                    value={selectedSize}
+                                    onChange={(e) => setSelectedSize(e.target.value)}
+                                >
+                                    <option value="">Selecciona una talla</option>
+                                    {product.tamaño.map((size) => (
+                                        <option key={size} value={size}>
+                                            {size}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
-
                     </div>
-
-                </>
+                </div>
             ) : (
-                <p>Cargando...</p>
+                <p className='user-select-none'>Producto no encontrado.</p>
             )}
         </div>
     );
