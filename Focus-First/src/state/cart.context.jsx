@@ -19,7 +19,7 @@ const CartContextProvider = ({ children }) => {
     };
 
     const removeList = () => {
-        setCartList([]); // Eliminar todos los elementos del carrito
+        setCartList([]); 
     };
 
     const deleteItem = (id) => {

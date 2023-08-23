@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 const Carousel = () => {
   return (
     <div id="carouselExampleDark" className="carousel carousel-dark slide">
@@ -13,8 +14,12 @@ const Carousel = () => {
           <div className="carousel-caption top-0 mt-4  d-md-block">
             <p className='mt-5 fs-3 text-uppercase d-none d-md-block'>Your Ultimate Fitness Gear and Supplement Source</p>
             <h2 className='display-1 fw-bolder text-capitalize'>Welcome to RAW</h2>
-            <button className='mt-5 m-2'>About Us</button>
-            <button className='mt-5 m-2'>Shop Now</button>
+            <Link to="/aboutus">
+              <button className='mt-5 m-2'>About Us</button>
+            </Link>
+            <Link to="/shopclothes">
+              <button className='mt-5 m-2'>Shop Now</button>
+            </Link>
           </div>
         </div>
         <div className="carousel-item c-item" data-bs-interval="2000">
@@ -22,7 +27,9 @@ const Carousel = () => {
           <div className="carousel-caption top-0 mt-4  d-md-block">
             <p className='mt-5 fs-3 text-uppercase d-none d-md-block'>Discover the latest trends in athletic wear at RAW</p>
             <h2 className='display-1 fw-bolder text-capitalize'>About Apparel</h2>
-            <button className='mt-5'>Shop Apparel Now</button>
+            <Link to="/shopclothes">
+              <button className='mt-5'>Shop Apparel Now</button>
+            </Link>
           </div>
         </div>
         <div className="carousel-item c-item">
@@ -30,6 +37,7 @@ const Carousel = () => {
           <div className="carousel-caption top-0 mt-4  d-md-block">
             <p className='mt-5 fs-3 text-uppercase d-none d-md-block'>Elevate Your Results with RAW Premiun Supplements</p>
             <h2 className='display-1 fw-bolder text-capitalize'>About Supplements</h2>
+            <Link to="/shopsuplementos"></Link>
             <button className="mt-5">Shop Supplements Now</button>
           </div>
         </div>
