@@ -39,7 +39,7 @@ const ItemList = () => {
                     {suplementItems.length === 0 ? (
                         <p className='user-select-none'>No hay productos disponibles.</p>
                     ) : (
-                        <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+                        <div className="row row-cols-1 row-cols-sm-2 m-3 row-cols-md-3 row-cols-lg-4 g-4">
                             {suplementItems.map((item) => (
                                 <div key={item.id}>
                                     <Link to={`/producto/${item.id}`} className="card card-sm p-1">

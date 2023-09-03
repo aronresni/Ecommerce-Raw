@@ -34,43 +34,49 @@ const Item = () => {
             {loading ? (
                 <Spinner />
             ) : product ? (
-                <div>
-                    <h3 className='user-select-none'>{product.nombre}</h3>
-                    <div className="card card-sm p-1">
-                        <img src={product.image} className="card-img-top" alt={product.nombre} />
-                        <div className="card-body">
-                            <h5 className="card-title">{product.nombre}</h5>
-                            <h4 className="card-text">Precio: ${product.precio}</h4>
-                            <p className="card-text">{product.benefits}</p>
-
-                            <img src={product.imagewallpaper} alt="Imagen Wallpaper" />
-                            <div className='row'>
-                                <a
-                                    href="#"
-                                    onClick={() => addToCart({ ...product, selectedSize }, 1)}
-                                    className="btn btn-dark p-1 mt-1"
-                                >
-                                    Agregar al carrito
-                                </a>
-                            </div>
-                            <div className='row'>
-                                <label htmlFor="sizeSelector">Talla:</label>
-                                <select
-                                    id="sizeSelector"
-                                    value={selectedSize}
-                                    onChange={(e) => setSelectedSize(e.target.value)}
-                                >
-                                    <option value="">Selecciona una talla</option>
-                                    {product.tamaño.map((size) => (
-                                        <option key={size} value={size}>
-                                            {size}
-                                        </option>
-                                    ))}
-                                </select>
+                <div className="container">
+                    <div className="row">
+                        <div>
+                            <div className="card mb-3">
+                                <div className="row g-0">
+                                    <div className="col-md-6">
+                                        <img src={product.image} className="img-fluid rounded" alt={product.nombre} />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="card-body">
+                                            <h5 className="card-title">{product.nombre}</h5>
+                                            <p className="card-text fw-bold fs-3">Precio: ${product.precio}</p>
+                                            <label htmlFor="sizeSelector">Talla:</label>
+                                            <select
+                                                id="sizeSelector"
+                                                value={selectedSize}
+                                                onChange={(e) => setSelectedSize(e.target.value)}
+                                                className="form-select mb-2"
+                                            >
+                                                <option value="">Selecciona una talla</option>
+                                                {product.tamaño.map((size) => (
+                                                    <option key={size} value={size}>
+                                                        {size}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <p className="card-text mt-4">{product.benefits}</p>
+                                            <button 
+                                                
+                                                onClick={() => addToCart({ ...product, selectedSize }, 1)}
+                                                className="btn btn-dark mt-4"
+                                            >
+                                                Agregar al carrito
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
+
             ) : (
                 <p className='user-select-none'>Producto no encontrado.</p>
             )}

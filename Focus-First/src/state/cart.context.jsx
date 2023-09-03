@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 export const CartContext = createContext();
 
@@ -6,12 +6,13 @@ const CartContextProvider = ({ children }) => {
     const [cartList, setCartList] = useState([]);
 
     const addToCart = (item, qty) => {
-        const existingItem = cartList.find(cartItem => cartItem.id === item.id);
+        const existingItemIndex = cartList.findIndex(
+            (cartItem) => cartItem.id === item.id && cartItem.selectedSize === item.selectedSize
+        );
 
-        if (existingItem) {
-            const updatedCart = cartList.map(cartItem =>
-                cartItem.id === item.id ? { ...cartItem, qty: cartItem.qty + qty } : cartItem
-            );
+        if (existingItemIndex !== -1) {
+            const updatedCart = [...cartList];
+            updatedCart[existingItemIndex].qty += qty;
             setCartList(updatedCart);
         } else {
             setCartList([...cartList, { ...item, qty }]);
@@ -19,7 +20,7 @@ const CartContextProvider = ({ children }) => {
     };
 
     const removeList = () => {
-        setCartList([]); 
+        setCartList([]);
     };
 
     const deleteItem = (id) => {
