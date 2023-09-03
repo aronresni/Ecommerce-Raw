@@ -25,7 +25,7 @@ const CartContent = () => {
                                         <div className='row w-50 m-5'>
                                             <h4>{item.nombre}</h4>
                                             <p>Precio: ${item.precio}</p>
-                                            <p>Talla: {item.selectedSize}</p>
+                                            <p>{item.categoria === "Clothes" ? "Talle" : "Tamaño"} {item.selectedSize}</p>
                                             <p>Cantidad: {item.qty}</p>
                                             <button onClick={() => deleteItem(item.id)}>Eliminar</button>
                                         </div>
@@ -39,7 +39,7 @@ const CartContent = () => {
             )}
             <div>
                 <button className="m-2" onClick={removeList}>Vaciar Carrito</button>
-                <Link>
+                <Link to="/form">
                     <button >Finalizar la compra</button>
                 </Link>
             </div>

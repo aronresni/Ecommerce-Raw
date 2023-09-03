@@ -12,6 +12,7 @@ const Item = () => {
     const [loading, setLoading] = useState(true);
     const [selectedSize, setSelectedSize] = useState('')
 
+
     useEffect(() => {
         async function fetchProduct() {
             try {
@@ -46,14 +47,16 @@ const Item = () => {
                                         <div className="card-body">
                                             <h5 className="card-title">{product.nombre}</h5>
                                             <p className="card-text fw-bold fs-3">Precio: ${product.precio}</p>
-                                            <label htmlFor="sizeSelector">Talla:</label>
+                                            <label htmlFor="sizeSelector">
+                                                Selecciona un  {product.categoria === "Clothes" ? "talle:" : "tamaño:"}
+                                            </label>
                                             <select
                                                 id="sizeSelector"
                                                 value={selectedSize}
                                                 onChange={(e) => setSelectedSize(e.target.value)}
                                                 className="form-select mb-2"
                                             >
-                                                <option value="">Selecciona una talla</option>
+
                                                 {product.tamaño.map((size) => (
                                                     <option key={size} value={size}>
                                                         {size}
@@ -61,8 +64,8 @@ const Item = () => {
                                                 ))}
                                             </select>
                                             <p className="card-text mt-4">{product.benefits}</p>
-                                            <button 
-                                                
+                                            <button
+
                                                 onClick={() => addToCart({ ...product, selectedSize }, 1)}
                                                 className="btn btn-dark mt-4"
                                             >
@@ -73,7 +76,7 @@ const Item = () => {
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
 
