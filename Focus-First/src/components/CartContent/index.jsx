@@ -42,9 +42,16 @@ const CartContent = () => {
             )}
             <div>
                 <button className="m-2" onClick={removeList}>Vaciar Carrito</button>
-                <Link to="/form">
-                    <button >Finalizar la compra</button>
-                </Link>
+
+                {cartList.length === 0 ? (
+                    <Link to="/">
+                        <button >Selecciona productos para poder seguir con la compra</button>
+                    </Link>) : (
+
+                    <Link to="/form">
+                        <button >Finalizar la compra</button>
+                    </Link>
+                )}
             </div>
         </div>
     );

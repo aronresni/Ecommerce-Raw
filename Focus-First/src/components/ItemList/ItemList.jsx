@@ -52,7 +52,6 @@ const ItemList = () => {
                                             <p className="card-text">{item.descripcion}</p>
                                             <div className='row'>
                                                 <a href="#" className="btn btn-dark p-1 mb-1">Ver</a>
-                                                <a href="#" onClick={() => addToCart(item, 1)} className="btn btn-dark p-1 mt-1">Agregar al carrito</a>
                                             </div>
                                         </div>
                                     </Link>

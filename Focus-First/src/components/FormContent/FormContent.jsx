@@ -1,15 +1,41 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { CartContext } from "../../state/cart.context"
 
 const FormContent = () => {
   const { cartList } = useContext(CartContext);
   const precioTotal = cartList.reduce((total, item) => total + item.precio * item.qty, 0);
 
+  const [formData, setFormData] = useState({
+    nombre: '',
+    email: '',
+    telefono: '',
+    mensaje: '',
+    calle: '',
+    codigoPostal: '',
+    provincia: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Aquí puedes realizar la lógica para enviar el formulario,
+    // por ejemplo, enviar los datos al servidor o realizar alguna acción deseada.
+    console.log(formData);
+  };
+
+
   return (
-    <div>
+    <div className='row'>
       <div className="mb-4">
         <h3>Resumen del Carrito</h3>
-        <ul>
+        <ul className='list-unstyled'>
           {cartList.map((item) => (
             <li key={item.id}>
               {item.nombre} - ${item.precio} x {item.qty}
@@ -18,7 +44,9 @@ const FormContent = () => {
         </ul>
         <h4>Total: ${precioTotal.toFixed(2)}</h4>
       </div>
-      <form>
+      <div className="d-flex justify-content-center align-items-center">
+
+      <form className="w-50" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="nombre">Nombre</label>
           <input
@@ -27,6 +55,8 @@ const FormContent = () => {
             name="nombre"
             className="form-control"
             placeholder="Ingrese su nombre"
+            value={formData.nombre}
+            onChange={handleChange}
           />
         </div>
         <div className="form-group">
@@ -37,6 +67,8 @@ const FormContent = () => {
             name="email"
             className="form-control"
             placeholder="Ingrese su correo electrónico"
+            value={formData.email}
+            onChange={handleChange}
           />
         </div>
         <div className="form-group">
@@ -47,6 +79,8 @@ const FormContent = () => {
             name="telefono"
             className="form-control"
             placeholder="Ingrese su número de teléfono"
+            value={formData.telefono}
+            onChange={handleChange}
           />
         </div>
         <div className="form-group">
@@ -57,12 +91,51 @@ const FormContent = () => {
             className="form-control"
             placeholder="Escriba su mensaje aquí"
             rows="4"
+            value={formData.mensaje}
+            onChange={handleChange}
           ></textarea>
         </div>
-        <button type="submit" className="btn btn-primary">
-          Enviar
+        <div className="form-group">
+          <label htmlFor="calle">Calle</label>
+          <input
+            type="text"
+            id="calle"
+            name="calle"
+            className="form-control"
+            placeholder="Ingrese su calle"
+            value={formData.calle}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="codigoPostal">Código Postal</label>
+          <input
+            type="text"
+            id="codigoPostal"
+            name="codigoPostal"
+            className="form-control"
+            placeholder="Ingrese su código postal"
+            value={formData.codigoPostal}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="provincia">Provincia</label>
+          <input
+            type="text"
+            id="provincia"
+            name="provincia"
+            className="form-control"
+            placeholder="Ingrese su provincia"
+            value={formData.provincia}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit" className="btn btn-dark mt-4">
+          Continuar con el pago
         </button>
       </form>
+      </div>
     </div>
   )
 }
