@@ -8,11 +8,11 @@ const CartWidget = () => {
     const getCartCant = cartList.reduce((total, item) => total + item.qty, 0);
 
     return (
-        <div>
+        <div className="d-flex justify-content-center">
             <Link to="/cart">
-                <AiOutlineShoppingCart />
+                <AiOutlineShoppingCart size={30} />
             </Link>
-            {getCartCant ? <h3>{getCartCant}</h3> : null}
+            {getCartCant ? <h3 className="p-1 text-secondary">{getCartCant}</h3> : null}
 
         </div>
     );

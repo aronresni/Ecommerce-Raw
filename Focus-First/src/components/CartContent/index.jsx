@@ -18,16 +18,19 @@ const CartContent = () => {
                                 <div className='m-1'>
 
 
-                                    <div className='d-flex'>
+                                    <div className='d-flex m-32 m-5'>
                                         <div className='d-flex align-items-center justify-content-center'>
                                             <img src={item.image} className="rounded w-50 mx-auto m-3" alt={item.nombre} />
                                         </div>
-                                        <div className='row w-50 m-5'>
+                                        <div className='row w-50 m-md-5 m-xs-0 m-sm-0'>
                                             <h4>{item.nombre}</h4>
                                             <p>Precio: ${item.precio}</p>
                                             <p>{item.categoria === "Clothes" ? "Talle" : "Tamaño"} {item.selectedSize}</p>
                                             <p>Cantidad: {item.qty}</p>
-                                            <button onClick={() => deleteItem(item.id)}>Eliminar</button>
+                                            <div>
+                                                <button className="w-100" onClick={() => deleteItem(item.id)}>Eliminar</button>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
